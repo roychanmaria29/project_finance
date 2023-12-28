@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=50.0">
+    <title>Cascading Dropdown Example</title>
+</head>
+<body>
+
+<!-- Country Dropdown -->
+<label for="country">Select Country:</label>
+<select id="country" onchange="populateCities()">
+    <option value="Kannur">Kannur</option>
+    <option value="Ernakulam">Ernakulam</option>
+       <option value="Kozhikode">Kozhikode</option>
+       <option value="Wayanad">Wayanad</option>
+       <option value="Idukki">Idukki</option>
+    <!-- Add more countries as needed -->
+</select>
+
+<br>
+
+<!-- City Dropdown -->
+<label for="city">Select City:</label>
+<select id="city">
+    <!-- Cities will be populated dynamically based on the selected country -->
+</select>
+
+<script>
+    // City data based on country
+    const cityData = {
+        Kannur: ["Payyanur", "Irrity", "Thaliparamb","Thalassery"],
+        Ernakulam: ["Aluva", "Kochi", "Muvattupuzha","Kunnathunadu"],
+        Kozhikode: ["Vadakara", "Koyilandy", "Thamarassery","Perambra"],
+        Wayanad: ["Manathavady", "Kalpetta", "Sultan Bethery","Vythiri"],
+        Idukki: ["Thodupuzha", "Adimali", "Kattapana","Munnar"]
+        // Add more countries and cities as needed
+    };
+
+    // Function to populate the city dropdown based on the selected country
+    function populateCities() {
+        const countryDropdown = document.getElementById("country");
+        const cityDropdown = document.getElementById("city");
+
+        // Clear existing options in the city dropdown
+        cityDropdown.innerHTML = "";
+
+        // Get the selected country
+        const selectedCountry = countryDropdown.value;
+
+        // Populate the city dropdown based on the selected country
+        cityData[selectedCountry].forEach(city => {
+            const option = document.createElement("option");
+            option.value = city;
+            option.text = city;
+            cityDropdown.add(option);
+        });
+    }
+
+    // Initial population of cities based on the default selected country
+    populateCities();
+</script>
+
+</body>
+</html>
